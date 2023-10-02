@@ -16,22 +16,42 @@ class UsersService {
       });
     }
   }
-  create() {
-
+  create(data) {
+    const newUser = {
+      id: faker.datatype.uuid(),
+      ...data
+    }
+    this.users.push(newUser);
+    return newUser;
   }
   find() {
-    return this.products;
+    return this.users;
 
   }
   findOne(id) {
     return this.users.find(item => item.id === id);
 
   }
-  update() {
+  update(id, changes) {
+    const index = this.users.findIndex(item => item.id === id);
+    if (index === -1) {
+      throw new Error('user not found');
 
   }
-  delete() {
+  const user = this.users[index];
+  this.products[index] = {
+  ...user,
+  ...changes
+  };
 
+}
+  delete(id) {
+    const index = this.products.findIndex(item => item.id === id);
+    if (index === -1) {
+      throw new Error('user not found');
   }
+  this.users.splice(index,1);
+  return { id };
+}
 }
 module.exports = UsersService
