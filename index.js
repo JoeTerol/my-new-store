@@ -2,7 +2,7 @@ const express = require('express');
 const app = express()
 const port = 3000;
 const  apiRouter  = require('./routes/index')
-
+const { logErrors, errorhandler, BoomErrorhandler  } = require('./middlewares/error.handler');
 
 app.get('/',(req, res) => {
   res.send('Hola, mi server en express')
@@ -13,12 +13,18 @@ app.get('/nueva-ruta',(req, res) => {
 app.get('/productos',(req, res) => {
   res.send('Nueva Ruta, hola soy la segunda ruta')
 });
+apiRouter(app)
+
+app.use(logErrors);
+app.use(BoomErrorhandler);
+app.use(errorhandler);
+
 
 app.listen(port, () => {
   console.log('mi port ' + port)
 })
 
-apiRouter(app)
+
 
 
 
