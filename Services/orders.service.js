@@ -1,4 +1,4 @@
-const faker = require('Faker');
+const { faker } = require('@faker-js/faker');
 
 class OrdersService {
   constructor() {

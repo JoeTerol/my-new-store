@@ -1,4 +1,4 @@
-const faker = require('faker');
+const { faker } = require('@faker-js/faker');
 
 class UsersService {
   constructor() {
@@ -9,16 +9,16 @@ class UsersService {
     const limit = 50;
     for (let i = 0; i < limit; i++) {
       this.users.push({
-        id: faker.datatype.uuid(),
+        id: faker.DatatypeModule.uuid(),
         username: faker.internet.username(),
-        name: faker.name.findName(),
+        name: faker.name,
         email: faker.internet.email()
       });
     }
   }
   create(data) {
     const newUser = {
-      id: faker.datatype.uuid(),
+      id: faker.DatatypeModule.uuid(),
       ...data
     }
     this.users.push(newUser);

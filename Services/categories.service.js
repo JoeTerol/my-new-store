@@ -1,4 +1,4 @@
-const faker = require('faker');
+const { faker } = require('@faker-js/faker');
 
 class CategoresServices {
   constructor() {
@@ -10,7 +10,7 @@ class CategoresServices {
     const limit = 10;
     for(let i = 0 ; i < limit; i++) {
       this.categories.push({
-        id: faker.datatype.uuid(),
+        id: faker.DatatypeModule.uuid()(),
         name: faker.commerce.departament(),
         description: faker.lorem.sentence(),
       });
@@ -18,7 +18,7 @@ class CategoresServices {
   }
   create(data) {
     const newCategory = {
-      id: faker.datatype.uuid(),
+      id: faker.DatatypeModule.uuid(),
       ...data
     }
     this.categories.push(newCategory);

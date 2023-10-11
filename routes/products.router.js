@@ -1,9 +1,7 @@
 const express = require('express');
-
-
 const ProductsService = require('./../Services/product.service')
-
 const router = express.Router();
+
 const service = new ProductsService();
 
  router.get('/:id', async (req, res) => {
@@ -35,7 +33,7 @@ const service = new ProductsService();
     res.json(product);
   } catch (error) {
     res.status(404).json({
-      message: error
+      message: error.message
     });
   }
 
@@ -52,8 +50,10 @@ const service = new ProductsService();
 });
 
  router.delete('/:id', async (req, res) => {
-  const { id } = await req.params;
+  const { id } = req.params;
   const rta = service.delete(id)
 
   res.json(rta);
 });
+
+module.exports = router;

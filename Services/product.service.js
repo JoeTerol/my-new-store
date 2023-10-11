@@ -26,7 +26,7 @@ class ProductsService {
     return newProduct;
 
   }
-  async find() {
+   find() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(this.products);
@@ -39,7 +39,7 @@ class ProductsService {
 
   }
   async update(id, changes) {
-    //necesito encontrar la poscion que tiene el array en memoria
+
     const index = this.products.findIndex(item => item.id === id);
     if (index === -1) {
       throw new Error('product not found');
